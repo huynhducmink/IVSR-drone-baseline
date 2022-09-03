@@ -23,6 +23,10 @@ http://wiki.ros.org/noetic/Installation/Ubuntu
 
 https://docs.px4.io/main/en/dev_setup/building_px4.html
 
+**Install MAVROS and GeographicLib
+
+https://github.com/mavlink/mavros/blob/master/mavros/README.md#installation
+
 **Change parameter setting in QGroundControl:**
 
 - Download QGroundControl from http://qgroundcontrol.com/
