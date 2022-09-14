@@ -46,10 +46,9 @@ git clone https://github.com/huynhducmink/flightros_for_PX4-Gazebo.git
 
 **Install VINS-FUSION**
 
-Eigen and Ceres don't need to install in ROS workspace, they will be installed to root
+Ceres don't need to install in ROS workspace, they will be installed to root
 
-- Eigen 3.4.0 from https://eigen.tuxfamily.org/index.php?title=Main_Page
-- Ceres-solver 2.1.0 from http://ceres-solver.org/installation.html (do not install libeigen3-dev, use Eigen version above)
+- Ceres-solver 2.1.0 from http://ceres-solver.org/installation.html
 ```
 git clone https://github.com/huynhducmink/VINS-Fusion
 ```
