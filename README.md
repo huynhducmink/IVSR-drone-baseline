@@ -65,9 +65,11 @@ git clone https://github.com/huynhducmink/ewok_optimization_DN.git
 **Install control package**
 ```
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
-
+git clone https://github.com/ethz-asl/eigen_checks.git
+git clone https://github.com/ethz-asl/nlopt.git
+git clone https://github.com/ethz-asl/glog_catkin.git
+git clone https://github.com/ethz-asl/yaml_cpp_catkin.git
 git clone https://github.com/ethz-asl/mav_trajectory_generation.git
-
 git clone https://github.com/huynhducmink/offboard
 ```
 
@@ -81,6 +83,11 @@ git clone https://github.com/huynhducmink/Visual_odometry_utilities
 **Install MSF**
 ```
 git clone https://github.com/huynhducmink/ethzasl_msf
+```
+
+**Build the workspace**
+```
+catkin build
 ```
 
 **Edit .bashrc file**
