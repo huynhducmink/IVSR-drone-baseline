@@ -23,7 +23,7 @@ http://wiki.ros.org/noetic/Installation/Ubuntu
 
 https://docs.px4.io/main/en/dev_setup/building_px4.html
 
-**Install MAVROS and GeographicLib
+**Install MAVROS and GeographicLib**
 
 https://github.com/mavlink/mavros/blob/master/mavros/README.md#installation
 
@@ -39,16 +39,20 @@ roslaunch px4 mavros_posix_sitl.launch
 **Install Flightmare**
 
 - https://flightmare.readthedocs.io/en/latest/getting_started/quick_start.html#quick-start
-- After finish installing Flightmare, replace the contents in the flightros folder with the contents in the following repository
+- After finish installing Flightmare, remove flightros folder in flightmare folder and replace with the following:
 ```
-git clone https://github.com/huynhducmink/flightros_for_PX4-Gazebo.git
+git clone https://github.com/huynhducmink/flightros.git
 ```
 
 **Install VINS-FUSION**
 
-Ceres don't need to install in ROS workspace, they will be installed to root
 
-- Ceres-solver 2.1.0 from http://ceres-solver.org/installation.html
+- Install Ceres-solver 2.1.0 from http://ceres-solver.org/installation.html
+
+Ceres don't need to install in ROS workspace, it will be installed to root. Also only version 2.1.0 will work, 2.2.0 won't
+
+- Install VINS-Fusion
+
 ```
 git clone https://github.com/huynhducmink/VINS-Fusion
 ```
@@ -97,16 +101,18 @@ The order is important, if you put the PX4 part before the Flightmare part it wo
 
 ```
 source /opt/ros/noetic/setup.bash
-export FLIGHTMARE_WS_PATH= (ADD PATH TO THE ROS WORKSPACE FOR FLIGHTMARE)
+export FLIGHTMARE_WS_PATH=(ADD PATH TO THE ROS WORKSPACE)
 source $FLIGHTMARE_WS_PATH/devel/setup.bash
 export FLIGHTMARE_PATH=$FLIGHTMARE_WS_PATH/src/flightmare
 
-export PX4_INSTALL_PATH= (ADD PATH TO THE PX4 INSTALL LOCATION)
+export PX4_INSTALL_PATH=(ADD PATH TO THE PX4 INSTALL LOCATION)
 source $PX4_INSTALL_PATH/Tools/setup_gazebo.bash $PX4_INSTALL_PATH $PX4_INSTALL_PATH/build/px4_sitl_default
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$PX4_INSTALL_PATH
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$PX4_INSTALL_PATH/Tools/sitl_gazebo
 export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins
 ```
+
+For different version of PX4, location of the above files may be different. This guide is for PX4 firmware version 1.13. If you wish to use newer or older version of PX4, please change the export and source paths.
 
 ## Running
 Launch PX4 and Gazebo
@@ -117,28 +123,22 @@ Launch the VIO utilities package
 ```
 rosrun read_topic vio_transform
 ```
-choose option 1
-
 Launch Flightmare environment
 ```
 roslaunch flightros rotors_gazebo.launch
 ```
-
 Launch VINS-FUSION
 ``` 
 rosrun vins vins_node $FLIGHTMARE_WS_PATH/src/VINS-Fusion/config/euroc/euroc_stereo_imu_config.yaml
 ```
-
 Launch MSF
 ```
 roslaunch msf_updates viconpos_sensor.launch
 ```
-
 Launch planner package
 ```
 roslaunch ewok_optimization optimization_point.launch
 ```
-
 Launch control package
 ```
 roslaunch offboard planner.launch simulation:=true
