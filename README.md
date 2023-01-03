@@ -153,7 +153,6 @@ choose 2 then 3 to enter planner flight mode
 
 - /vio_odo_posestamped is output of odometry package change to posestamped format by VIO_utilities package
 
-
 **Ewok optimization**
 
 file ewok_optimization/launch/optimization_point.launch 
@@ -171,8 +170,6 @@ file ewok_optimization/example/spline_optimization_example3.cpp
     - currently set to /msf_core/pose_after_update, set to /vio_odo_posestamped if you dont run msf
 - to run without odometry
 	- set current_pose_sub to /mavros/local_position/pose
-	- comment custom transform from /map to base_link
-	- change /opt/ros/noetic/share/mavros/launch/px4_config.yaml line 71 from false to true to publish transform from /map to /base_link using px4
 
 **Flightmare**
 file flightros/src/pilot/flight_pilot.cpp
@@ -212,8 +209,3 @@ https://github.com/VladyslavUsenko/ewok
 
 https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git
 ```
-
-## To do
-
-- Optimize running and configuring process of the system
-- Optimize the stability of the system
