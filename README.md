@@ -145,6 +145,39 @@ roslaunch offboard planner.launch simulation:=true
 ```
 choose 2 then 3 to enter planner flight mode
 
+## Flight scenarios
+
+**Control only**
+
+Only use offboard control package to control the UAV in Flightmare, using odometry from mavros, input setpoints in enu flight mode
+
+Config the control package to receive mavros local position topic as input odometry
+
+**Control + Planning**
+
+Use ewok planner to build map from depth camera and generate flight path, use offboard control with planning mode to follow the path from ewok
+
+Config the planning and control package to receive mavros local position topic as input odometry
+
+**Odometry only**
+
+Use only offboard control with ENU flight mode or ewok planner + control to control the UAV, turn on VINS-Fusion package to check if VIO match with flight path
+
+Config the planning and control package to receive mavros local position topic as input odometry. VIO package run independently
+
+**Fly using odometry**
+
+Use the output from VINS-Fusion to feed into ewok planner and offboard control to fly using odometry
+
+Config the planning and control package to receive output topic of VIO package as input odometry.
+
+**Fly using odometry with MSF**
+
+Use the output from VINS-Fusion to feed into MSF to fuse with IMU data, then use output of MSF to fly with planning and control package
+
+Config the MSF package to receive output of VIO package and IMU topic
+Config the planning and control package to receive output topic of MSF package as input odometry.
+
 ## Instruction to config each package
 
 **MSF**
